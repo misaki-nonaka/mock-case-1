@@ -15,10 +15,10 @@ class CreateShipmentsTable extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('item_id')->constrained()->unique();
             $table->string('item_zipcode');
             $table->string('item_address');
-            $table->string('item_building');
+            $table->string('item_building')->nullable();
             $table->timestamps();
         });
     }

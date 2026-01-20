@@ -13,4 +13,8 @@ class Like extends Model
         'user_id',
         'item_id',
     ];
+
+    public function favorites(){
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

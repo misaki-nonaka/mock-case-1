@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('item_img');
             $table->string('item_name');
-            $table->string('brand');
+            $table->string('brand')->nullable();
             $table->integer('price');
             $table->text('detail');
             $table->tinyInteger('condition');

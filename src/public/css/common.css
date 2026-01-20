@@ -1,0 +1,30 @@
+body {
+    max-width: 1540px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    background: black;
+}
+
+.header__inner {
+    width: 450px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+.header__logo img {
+    width: 370px;
+    height: 36px;
+}
+
+.header-search {
+    width: 563px;
+    text-align: center;
+}
+
+.header-nav {
+    width: 463px;
+}
