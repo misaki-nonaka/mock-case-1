@@ -39,6 +39,7 @@
         <h1 class="shipment-title">住所の変更</h1>
         <form action="/purchase/address/{{ $item_id }}" method="post" class="shipment-form">
             @csrf
+            @method('patch')
             <div class="shipment-form__group">
                 <p class="shipment-form__title">郵便番号</p>
                 <input type="text" name="zipcode" class="shipment-form__content" value="{{session('address[zipcode]')}}">

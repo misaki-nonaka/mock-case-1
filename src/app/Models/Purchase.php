@@ -14,4 +14,8 @@ class Purchase extends Model
         'user_id',
         'payment'
     ];
+
+    public function buyItem(){
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

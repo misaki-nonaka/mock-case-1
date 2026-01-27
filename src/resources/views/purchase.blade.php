@@ -51,7 +51,7 @@
                 <form action="/payment/{{ $item->id }}" method="post" class="payment__select">
                     @csrf
                     <select name="payment" onchange="this.form.submit()">
-                        <option value="">選択してください</option>
+                        <option value="" hidden>選択してください</option>
                         <option value="1">コンビニ支払い</option>
                         <option value="2">カード支払い</option>
                     </select>
