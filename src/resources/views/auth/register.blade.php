@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 @endsection
 
+@section('hideCommon', 'true')
+
 @section('content')
 <div class="register-title">
     <h1 class="register-title__inner">会員登録</h1>

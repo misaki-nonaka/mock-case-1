@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
+@section('hideCommon', 'true')
+
 @section('content')
 <div class="login-title">
     <h1 class="login-title__inner">ログイン</h1>

@@ -4,36 +4,6 @@
 <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 @endsection
 
-@section('search')
-    <form action="/search" method="get">
-        @csrf
-        <input type="search" class="header-search__inner" name="keyword" placeholder="なにをお探しですか？">
-    </form>
-@endsection
-
-@section('nav')
-    <ul class="header-nav__inner">
-        @if (Auth::check())
-        <li class="header-nav__item">
-            <form action="/logout" method="post" class="header-nav__form">
-                @csrf
-                <button class="header-nav__button">ログアウト</button>
-            </form>
-        </li>
-        @else
-        <li class="header-nav__item">
-            <a href="/login" class="header-nav__link">ログイン</a>
-        </li>
-        @endif
-        <li class="header-nav__item">
-            <a href="/mypage" class="header-nav__link">マイページ</a>
-        </li>
-        <li class="header-nav__item--sell">
-            <a href="/sell" class="header-nav__link--sell">出品</a>
-        </li>
-    </ul>
-@endsection
-
 @section('content')
     <div class="content-box">
         <div class="purchase-info">
@@ -70,28 +40,26 @@
             </div>
         </div>
         <div class="purchase-summary">
-            <div class="summary-inner">
-                <table class="summary-table">
-                    <tr>
-                        <th>商品代金</th>
-                        <td>&yen; <span>{{ number_format($item->price) }}</span></td>
-                    </tr>
-                    <tr>
-                        <th>支払い方法</th>
-                        <td>
-                            @if($payment == 1)
-                                コンビニ払い
-                            @else
-                                カード払い
-                            @endif
-                        </td>
-                    </tr>
-                </table>
-                <form action="/complete/{{ $item->id }}" method="post" class="summary-form">
-                    @csrf
-                    <button type="submit">購入する</button>
-                </form>
-            </div>
+            <table class="summary-table">
+                <tr>
+                    <th>商品代金</th>
+                    <td>&yen; <span>{{ number_format($item->price) }}</span></td>
+                </tr>
+                <tr>
+                    <th>支払い方法</th>
+                    <td>
+                        @if($payment == 1)
+                            コンビニ払い
+                        @else
+                            カード払い
+                        @endif
+                    </td>
+                </tr>
+            </table>
+            <form action="/complete/{{ $item->id }}" method="post" class="summary-form">
+                @csrf
+                <button type="submit">購入する</button>
+            </form>
         </div>
     </div>
 @endsection

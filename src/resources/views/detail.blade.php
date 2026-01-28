@@ -4,36 +4,6 @@
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
-@section('search')
-    <form action="/search" method="get">
-        @csrf
-        <input type="search" class="header-search__inner" name="keyword" placeholder="なにをお探しですか？">
-    </form>
-@endsection
-
-@section('nav')
-    <ul class="header-nav__inner">
-        @if (Auth::check())
-        <li class="header-nav__item">
-            <form action="/logout" method="post" class="header-nav__form">
-                @csrf
-                <button class="header-nav__button">ログアウト</button>
-            </form>
-        </li>
-        @else
-        <li class="header-nav__item">
-            <a href="/login" class="header-nav__link">ログイン</a>
-        </li>
-        @endif
-        <li class="header-nav__item">
-            <a href="/mypage" class="header-nav__link">マイページ</a>
-        </li>
-        <li class="header-nav__item--sell">
-            <a href="/sell" class="header-nav__link--sell">出品</a>
-        </li>
-    </ul>
-@endsection
-
 @section('content')
     <div class="item-detail">
         <div class="item-image">
@@ -87,11 +57,13 @@
                 <h2 class="item-info__title">商品の情報</h2>
                 <div class="item-info__inner">
                     <h3>カテゴリー</h3>
+                    <div class="info-category__box">
                     @foreach($item->categories as $category)
                         <div class="info-category">
                             {{ $category->content }}
                         </div>
                     @endforeach
+                    </div>
                 </div>
                 <div class="item-info__inner">
                     <h3>商品の状態</h3>

@@ -16,10 +16,38 @@
             <a href="/" class="header__logo"><img src="/images/COACHTECHヘッダーロゴ.png" alt=""></a>
         </div>
         <div class="header-search">
-            @yield('search')
+            @hasSection('hideCommon')
+            @else
+                <form action="/search" method="get">
+                    @csrf
+                    <input type="search" class="header-search__inner" name="keyword" placeholder="なにをお探しですか？">
+                </form>
+            @endif
         </div>
         <div class="header-nav">
-            @yield('nav')
+            @hasSection('hideCommon')
+            @else
+                <ul class="header-nav__inner">
+                    @if (Auth::check())
+                        <li class="header-nav__item">
+                            <form action="/logout" method="post" class="header-nav__form">
+                            @csrf
+                                <button class="header-nav__button">ログアウト</button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="header-nav__item">
+                            <a href="/login" class="header-nav__link">ログイン</a>
+                        </li>
+                    @endif
+                    <li class="header-nav__item">
+                        <a href="/mypage" class="header-nav__link">マイページ</a>
+                    </li>
+                    <li class="header-nav__item--sell">
+                        <a href="/sell" class="header-nav__link--sell">出品</a>
+                    </li>
+                </ul>
+            @endif
         </div>
     </header>
 
