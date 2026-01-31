@@ -12,7 +12,10 @@ class ProfileController extends Controller
 {
     public function mypage(Request $request){
         $activePage = $request->query('page', 'sell');
-        $contents = User::with('profile')->with('exhibits')->with('purchases.buyItem')->find(auth()->id());
+        $contents = User::with('profile')->with('exhibits')->with(['purchases' => function($q) {
+            $q->where('status', 'paid')->with('buyItem');
+        }])
+        ->find(auth()->id());
         return view('mypage', compact('activePage', 'contents'));
     }
 

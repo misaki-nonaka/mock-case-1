@@ -15,7 +15,7 @@ class CreateShipmentsTable extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained()->unique();
+            $table->foreignId('item_id')->constrained();
             $table->string('item_zipcode');
             $table->string('item_address');
             $table->string('item_building')->nullable();

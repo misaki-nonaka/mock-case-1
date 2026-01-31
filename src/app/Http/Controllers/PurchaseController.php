@@ -16,7 +16,7 @@ class PurchaseController extends Controller
         $item = Item::with('shipment')->find($item_id);
         $profile = Profile::where('user_id', auth()->id())->first();
         $address = session('address') ?? $profile->only(['zipcode', 'address', 'building']);
-        $payment = session('payment') ?? 1;
+        $payment = session('payment') ?? 'konbini';
 
         return view('purchase', compact('item', 'address', 'payment'));
     }
@@ -44,7 +44,7 @@ class PurchaseController extends Controller
         $user = auth()->user();
         $address = session('address')
         ?? $user->profile->only(['zipcode', 'address', 'building']);
-        $payment = session('payment', 1);
+        $payment = session('payment', 'konbini');
 
         Item::find($item_id)->update(['sold' => 1]);
         Purchase::create([

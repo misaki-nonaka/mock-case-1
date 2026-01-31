@@ -22,8 +22,8 @@
                     @csrf
                     <select name="payment" onchange="this.form.submit()">
                         <option value="" hidden>選択してください</option>
-                        <option value="1">コンビニ支払い</option>
-                        <option value="2">カード支払い</option>
+                        <option value="konbini">コンビニ支払い</option>
+                        <option value="card">カード支払い</option>
                     </select>
                 </form>
             </div>
@@ -48,18 +48,19 @@
                 <tr>
                     <th>支払い方法</th>
                     <td>
-                        @if($payment == 1)
+                        @if($payment == 'konbini')
                             コンビニ払い
-                        @else
+                        @elseif($payment == 'card')
                             カード払い
                         @endif
                     </td>
                 </tr>
             </table>
-            <form action="/complete/{{ $item->id }}" method="post" class="summary-form">
+            <form action="/checkout/{{ $item->id }}" method="post" class="summary-form">
                 @csrf
                 <button type="submit">購入する</button>
             </form>
         </div>
     </div>
+</form>
 @endsection

@@ -18,8 +18,7 @@
         <div class="header-search">
             @hasSection('hideCommon')
             @else
-                <form action="/search" method="get">
-                    @csrf
+                <form action="/" method="get">
                     <input type="search" class="header-search__inner" name="keyword" placeholder="なにをお探しですか？">
                 </form>
             @endif

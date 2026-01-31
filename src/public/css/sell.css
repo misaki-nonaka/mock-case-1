@@ -176,6 +176,10 @@
     transform: translateY(-50%);
 }
 
+.sell-input__price input {
+    text-align: right;
+}
+
 .sell-form__error-message {
     height: 36px;
     margin: 0;

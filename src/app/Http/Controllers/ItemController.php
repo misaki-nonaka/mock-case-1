@@ -13,19 +13,24 @@ class ItemController extends Controller
 {
     public function index(Request $request){
         $activeTab = $request->query('tab', 'home');
-        $userId = Auth::check() ? Auth::user()->id : '';
-        $items = Item::whereNotIn('user_id', [$userId])->get();
-        $myLists = Like::with('favorites')->where('user_id', $userId)->get();
-        return view('index', compact('activeTab', 'items', 'myLists'));
-    }
+        $keyword = $request->query('keyword');
+        $userId = Auth::id();
+        $itemsQuery = Item::query()
+            ->when($userId, fn ($q) => 
+                $q->where('user_id', '!=', $userId));
+        if($keyword){
+            $itemsQuery->where('item_name', 'LIKE',"%{$keyword}%");
+        }
+        $items = $itemsQuery->get();
 
-    public function search(Request $request){
-        $activeTab = $request->query('tab', 'home');
-        $userId = Auth::check() ? Auth::user()->id : '';
-        $items = Item::where('item_name', 'LIKE',"%{$request->keyword}%")->get();
+        $myListsQuery = Like::with('favorites')->where('user_id', $userId);
+        if ($keyword) {
+            $myListsQuery->whereHas('favorites', function ($q) use ($keyword) {
+                $q->where('item_name', 'like', "%{$keyword}%");
+            });
+        }
+        $myLists = $myListsQuery->get();
 
-        // マイリストでの検索機能は別途実装
-        $myLists = Like::with('favorites')->where('user_id', $userId)->get();
         return view('index', compact('activeTab', 'items', 'myLists'));
     }
 

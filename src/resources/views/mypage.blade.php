@@ -29,7 +29,9 @@
             @foreach($contents->exhibits as $item)
                 <div class="item-list__inner">
                     <div class="item-list__image">
+                        @if($item->sold == 0)
                         <a href="/item/{{ $item->id }}" class="item-list__link">
+                        @endif
                             <img src="{{ asset($item->item_img) }}" alt="">
                             @if($item->sold == 1)
                                 <span class="sold-badge">Sold</span>
@@ -43,11 +45,8 @@
             @foreach($contents->purchases as $item)
                 <div class="item-list__inner">
                     <div class="item-list__image">
-                        <a href="/item/{{ $item->buyItem->id }}" class="item-list__link">
                             <img src="{{ asset($item->buyItem->item_img) }}" alt="">
-                            @if($item->buyItem->sold == 1)
-                                <span class="sold-badge">Sold</span>
-                            @endif
+                            <span class="sold-badge">Sold</span>
                         </a>
                     </div>
                     <p class="item-list__name">{{ $item->buyItem->item_name }}</p>

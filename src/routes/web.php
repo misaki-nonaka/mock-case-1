@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,8 @@ use App\Http\Controllers\SellController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('index');
 Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('detail');
-Route::get('/search', [ItemController::class, 'search']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/item/like/{item_id}', [ItemController::class, 'like']);
@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/{item_id}', [PurchaseController::class, 'payment']);
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress']);
     Route::patch('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress']);
-    Route::post('/complete/{item_id}', [PurchaseController::class, 'complete']);
+    // Route::post('/complete/{item_id}', [PurchaseController::class, 'complete']);
 
     Route::get('/sell', [SellController::class, 'sell']);
     Route::post('/sell', [SellController::class, 'exhibit']);
@@ -42,4 +42,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [ProfileController::class, 'mypage']);
     Route::get('/mypage/profile', [ProfileController::class, 'editProfile']);
     Route::patch('/mypage/profile', [ProfileController::class, 'updateProfile']);
+
+    Route::post('/checkout/{item_id}', [StripeController::class, 'checkout'])->name('checkout');
 });
+
+
+// Route::get('/success', fn() => view('success'))->name('success');
+// Route::get('/cancel', fn() => view('cancel'))->name('cancel');
+Route::post('/stripe/webhook', [StripeController::class, 'handle']);

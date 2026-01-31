@@ -11,7 +11,7 @@
                 <a href="/" class="tab-list__link {{ $activeTab === 'home' ? 'active' : '' }}">おすすめ</a>
             </li>
             <li class="tab-list__item">
-                <a href="/?tab=mylist" class="tab-list__link {{ $activeTab === 'mylist' ? 'active' : '' }}">マイリスト</a>
+                <a href="/?tab=mylist&keyword={{ request('keyword') }}" class="tab-list__link {{ $activeTab === 'mylist' ? 'active' : '' }}">マイリスト</a>
             </li>
         </ul>
     </div>
@@ -37,7 +37,9 @@
             @foreach($myLists as $list)
                 <div class="item-list__inner">
                     <div class="item-list__image">
+                        @if($list->favorites->sold == 0)
                         <a href="/item/{{ $list->favorites->id }}" class="item-list__link">
+                        @endif
                             <img src="{{ asset($list->favorites->item_img) }}" alt="">
                             @if($list->favorites->sold == 1)
                                 <span class="sold-badge">Sold</span>
