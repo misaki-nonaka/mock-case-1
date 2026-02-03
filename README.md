@@ -28,3 +28,6 @@
 
 ## ER図
 /home/misaki/coachtech/laravel/mock-case-1_flea-market/ER.drawio.png
+
+
+## Stripe CLIの導入を書くこと

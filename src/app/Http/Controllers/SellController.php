@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Item;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class SellController extends Controller
 {
@@ -19,8 +21,15 @@ class SellController extends Controller
         $originalName = $request->file('item_img')->getClientOriginalName();
         $extension = $request->file('item_img')->getClientOriginalExtension();
         $fileName = time().'_' .$originalName;
-        $target_path = 'public/items';
-        $request->file('item_img')->storeAs($target_path, $fileName);
+        $target_path = 'items/';
+
+        $file = $request->file('item_img');
+        $image = Image::make($file)->resize(800, null, function($constraint) {
+            $constraint->aspectRatio();
+        })
+        ->encode($extension, 75);
+
+        Storage::disk('public')->put($target_path.$fileName, $image);
 
         $img_path = 'storage/items/';
 
@@ -36,7 +45,6 @@ class SellController extends Controller
             'sold' => 0
         ])
         ->categories()->sync($request->category);
-
 
         return redirect('/');
     }

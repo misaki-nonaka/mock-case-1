@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileRequest;
 use App\Models\User;
 use App\Models\Profile;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -26,9 +28,17 @@ class ProfileController extends Controller
 
     public function updateProfile(ProfileRequest $request){
         if($request->hasFile('profile_img')){
-            $fileName = time().'_' .'id-'.(auth()->id()). '.' .($request->file('profile_img')->getClientOriginalExtension());
-            $target_path = 'public/profiles';
-            $request->file('profile_img')->storeAs($target_path, $fileName);
+            $extension = $request->file('profile_img')->getClientOriginalExtension();
+            $fileName = time().'_' .'id-'.(auth()->id()). '.' .$extension;
+            $target_path = 'profiles/';
+
+            $file = $request->file('profile_img');
+            $image = Image::make($file)->resize(800, null, function($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->encode($extension, 75);
+
+            Storage::disk('public')->put($target_path.$fileName, $image);
 
             $img_path = 'storage/profiles/';
             Profile::updateOrCreate(['user_id' => auth()->id()], [
