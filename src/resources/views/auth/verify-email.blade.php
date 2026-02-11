@@ -15,7 +15,7 @@
             </p>
 
             <div class="verify-button">
-                <p>認証はこちらから</p>
+                <a href="http://localhost:8025/#">認証はこちらから</a>
             </div>
 
             @if (session('status') == 'verification-link-sent')

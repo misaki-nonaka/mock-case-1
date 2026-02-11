@@ -47,6 +47,4 @@ Route::middleware('auth', 'verified')->group(function () {
 });
 
 
-// Route::get('/success', fn() => view('success'))->name('success');
-// Route::get('/cancel', fn() => view('cancel'))->name('cancel');
 Route::post('/stripe/webhook', [StripeController::class, 'handle']);

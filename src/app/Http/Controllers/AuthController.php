@@ -50,20 +50,20 @@ class AuthController extends Controller
         return redirect()->intended('/');
     }
 
-    public function mail() {
-        $certificationMail = new CertificationMail();
-        Mail::send($certificationMail);
-        if (count(Mail::failures()) > 0) {
-            $message = 'メール送信に失敗しました';
+    // public function mail() {
+    //     $certificationMail = new CertificationMail();
+    //     Mail::send($certificationMail);
+    //     if (count(Mail::failures()) > 0) {
+    //         $message = 'メール送信に失敗しました';
 
-						// 元の画面に戻る
-						return back()->withErrors($messages);
-        }
-        else{
-            $messages = 'メールを送信しました';
+	// 					// 元の画面に戻る
+	// 					return back()->withErrors($messages);
+    //     }
+    //     else{
+    //         $messages = 'メールを送信しました';
 
-						// 別のページに遷移する
-						return redirect()->route('profile')->with(compact('messages'));
-        }
-    }
+	// 					// 別のページに遷移する
+	// 					return redirect()->route('profile')->with(compact('messages'));
+    //     }
+    // }
 }

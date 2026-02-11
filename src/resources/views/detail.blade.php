@@ -84,7 +84,7 @@
                 <h2 class="item-list__comment-title">コメント({{ $item->comments_count }})</h2>
                 @foreach($item->comments as $comment)
                     <div class="comment-user">
-                        <img src="{{ asset($comment->user->profile->profile_img) }}" alt="画像">
+                        <img src="{{ asset(optional($comment)->user->profile->profile_img ?? 'storage/profiles/noimage.jpg') }}" alt="">
                         <p>{{ $comment->user->profile->nickname}}</p>
                     </div>
                     <p class="item-list__comment">{{$comment->text}}</p>
@@ -94,6 +94,11 @@
                     <form action="/item/comment/{{$item->id}}" method="post">
                         @csrf
                         <textarea name="text"></textarea>
+                        <p class="comment-form__error-message">
+                            @error('text')
+                                {{ $message }}
+                            @enderror
+                        </p>
                         <button type="submit">コメントを送信する</button>
                     </form>
                 </div>

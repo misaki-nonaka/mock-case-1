@@ -24,44 +24,72 @@ class StripeController extends Controller
         $address = session('address')
         ?? $user->profile->only(['zipcode', 'address', 'building']);
 
-        $purchase = Purchase::create([
-            'item_id' => $item_id,
-            'user_id' => auth()->id(),
-            'payment' => $payment,
-            'item_zipcode' => $address['zipcode'],
-            'item_address' => $address['address'],
-            'item_building' => $address['building'],
-            'status' => 'pending',
-        ]);
+        // コンビニ支払いの場合のみ、即時購入完了とする
+        if($payment == 'konbini') {
+            $purchase = Purchase::create([
+                'item_id' => $item_id,
+                'user_id' => $user->id,
+                'payment' => $payment,
+                'item_zipcode' => $address['zipcode'],
+                'item_address' => $address['address'],
+                'item_building' => $address['building'],
+                'status' => 'paid',
+            ]);
 
-        session()->forget(['address', 'payment']);
+            Item::find($item_id)->update(['sold' => 1]);
 
-        $item = Item::find($item_id);
+            Shipment::firstOrCreate(
+                ['item_id' => $item_id],
+                [
+                    'item_zipcode' => $purchase->item_zipcode,
+                    'item_address' => $purchase->item_address,
+                    'item_building' => $purchase->item_building,
+                ]
+            );
 
-        $session = Session::create([
-            'payment_method_types' => [$payment],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'jpy',
-                    'product_data' => [
-                        'name' => $item->item_name,
-                        'description' => $item->detail,
+            return redirect()->route('index');
+        }
+
+        else {
+            $purchase = Purchase::create([
+                'item_id' => $item_id,
+                'user_id' => $user->id,
+                'payment' => $payment,
+                'item_zipcode' => $address['zipcode'],
+                'item_address' => $address['address'],
+                'item_building' => $address['building'],
+                'status' => 'pending',
+            ]);
+
+            session()->forget(['address', 'payment']);
+
+            $item = Item::find($item_id);
+
+            $session = Session::create([
+                'payment_method_types' => [$payment],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'product_data' => [
+                            'name' => $item->item_name,
+                            'description' => $item->detail,
+                        ],
+                        'unit_amount' => $item->price,
                     ],
-                    'unit_amount' => $item->price,
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+
+                'metadata' => [
+                    'purchase_id' => $purchase->id,
                 ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
 
-            'metadata' => [
-                'purchase_id' => $purchase->id,
-            ],
+                'success_url' => route('index'),
+                'cancel_url' => route('detail', $item->id),
+            ]);
 
-            'success_url' => url('/'),
-            'cancel_url' => route('detail', $item->id),
-        ]);
-
-        return redirect($session->url);
+            return redirect($session->url);
+        }
     }
 
     public function handle(Request $request)
@@ -70,7 +98,8 @@ class StripeController extends Controller
 
         if (
             $event->type === 'checkout.session.completed' ||
-            $event->type === 'checkout.session.async_payment_succeeded')
+            $event->type === 'checkout.session.async_payment_succeeded'
+            )
         {
             $session = $event->data->object;
 
@@ -89,7 +118,6 @@ class StripeController extends Controller
                     'item_building' => $purchase->item_building,
                 ]
             );
-
         }
 
         return response()->json(['status' => 'success']);

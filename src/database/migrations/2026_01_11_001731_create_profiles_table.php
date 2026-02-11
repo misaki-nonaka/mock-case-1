@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('profile_img')->nullable();
             $table->string('zipcode');
             $table->string('address');
-            $table->string('building');
+            $table->string('building')->nullable();
             $table->timestamps();
         });
     }
