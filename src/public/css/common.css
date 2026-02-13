@@ -65,6 +65,7 @@ body {
     background: none;
     color: #ffffff;
     font-size: 24px;
+    cursor: pointer;
 }
 
 .header-nav__link {

@@ -20,7 +20,7 @@
                 <a href="/mypage/?page=sell" class="tab-list__link {{ $activePage === 'sell' ? 'active' : '' }}">出品した商品</a>
             </li>
             <li class="tab-list__item">
-                <a href"/mypage/?page=buy"= class="tab-list__link {{ $activePage === 'buy' ? 'active' : '' }}">購入した商品</a>
+                <a href="/mypage/?page=buy" class="tab-list__link {{ $activePage === 'buy' ? 'active' : '' }}">購入した商品</a>
             </li>
         </ul>
     </div>

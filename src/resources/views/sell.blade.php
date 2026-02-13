@@ -28,7 +28,7 @@
                 <div class="sell-content__category">
                     @foreach($categories as $category)
                     <label class="category-label">{{ $category->content }}
-                        <input type="checkbox" name="category[]" value="{{$category->id}}">
+                        <input type="checkbox" name="category[]" value="{{$category->id}}" {{ in_array($category->id, old('category', [])) ? 'checked' : '' }}>
                     </label>
                     @endforeach
                 </div>
@@ -44,10 +44,10 @@
                     <div class="sell-input__condition">
                         <select name="condition" class="sell-input__select">
                             <option value="" hidden>選択してください</option>
-                            <option value="1">良好</option>
-                            <option value="2">目立った傷や汚れなし</option>
-                            <option value="3">やや傷や汚れあり</option>
-                            <option value="4">状態が悪い</option>
+                            <option value="1" {{ old('condition') === '1' ? 'selected' : '' }}>良好</option>
+                            <option value="2" {{ old('condition') === '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
+                            <option value="3" {{ old('condition') === '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
+                            <option value="4" {{ old('condition') === '4' ? 'selected' : '' }}>状態が悪い</option>
                         </select>
                     </div>
                     <p class="sell-form__error-message">
@@ -61,7 +61,7 @@
                     <h3 class="sell-content__sub-title">
                         商品名
                     </h3>
-                    <input type="text" name="item_name">
+                    <input type="text" name="item_name" value={{ old('item_name') }}>
                     <p class="sell-form__error-message">
                         @error('item_name')
                             {{ $message }}
@@ -72,7 +72,7 @@
                     <h3 class="sell-content__sub-title">
                         ブランド名
                     </h3>
-                    <input type="text" name="brand">
+                    <input type="text" name="brand" value={{ old('brand') }}>
                     <p class="sell-form__error-message">
                     </p>
                 </div>
@@ -80,7 +80,7 @@
                     <h3 class="sell-content__sub-title">
                         商品の説明
                     </h3>
-                    <textarea name="detail" cols="30" rows="10"></textarea>
+                    <textarea name="detail" cols="30" rows="10" value={{ old('detail') }}></textarea>
                     <p class="sell-form__error-message">
                         @error('detail')
                             {{ $message }}
@@ -92,7 +92,7 @@
                         販売価格
                     </h3>
                     <div class="sell-input__price">
-                        <input type="text" name="price">
+                        <input type="text" name="price" value={{ old('price') }}>
                     </div>
                     <p class="sell-form__error-message">
                         @error('price')

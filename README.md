@@ -27,7 +27,7 @@
 ・phpMyAdmin 5.2.3  
 
 ## ER図
-/home/misaki/coachtech/laravel/mock-case-1_flea-market/ER.drawio.png
+![alt text](ER.drawio-1.png)
 
 
 ## Stripe CLIの導入を書くこと

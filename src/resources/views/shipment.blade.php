@@ -12,7 +12,7 @@
             @method('patch')
             <div class="shipment-form__group">
                 <p class="shipment-form__title">郵便番号</p>
-                <input type="text" name="zipcode" class="shipment-form__content" value="{{session('address[zipcode]')}}">
+                <input type="text" name="zipcode" class="shipment-form__content" value="{{ old('zipcode', session('address.zipcode')) }}">
                 <p class="shipment-form__error-message">
                     @error('zipcode')
                         {{ $message }}
@@ -21,7 +21,7 @@
             </div>
             <div class="shipment-form__group">
                 <p class="shipment-form__title">住所</p>
-                <input type="text" name="address" class="shipment-form__content">
+                <input type="text" name="address" class="shipment-form__content" value="{{ old('address', session('address.address')) }}">
                 <p class="shipment-form__error-message">
                     @error('address')
                         {{ $message }}
@@ -30,7 +30,7 @@
             </div>
             <div class="shipment-form__group">
                 <p class="shipment-form__title">建物名</p>
-                <input type="text" name="building" class="shipment-form__content">
+                <input type="text" name="building" class="shipment-form__content" value="{{ old('building', session('address.building')) }}">
             </div>
             <button type="submit" class="shipment-form__button">更新する</button>
         </form>

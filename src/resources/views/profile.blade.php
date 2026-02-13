@@ -14,14 +14,16 @@
                 <div class="profile-img">
                     <img src="{{ asset(optional($profile)->profile_img ?? 'storage/profiles/noimage.jpg') }}" alt="">
                 </div>
-                <label class="profile-img__upload">画像を選択する
-                    <input type="file" name="profile_img">
-                </label>
-                <p class="profile-form__error-message">
-                    @error('profile_img')
-                        {{ $message }}
-                    @enderror
-                </p>
+                <div class="profile-img__input-block">
+                    <label class="profile-img__upload">画像を選択する
+                        <input type="file" name="profile_img">
+                    </label>
+                    <p class="profile-form__error-message">
+                        @error('profile_img')
+                            {{ $message }}
+                        @enderror
+                    </p>
+                </div>
             </div>
             <div class="profile-input__block">
                 <div class="profile-input__group">

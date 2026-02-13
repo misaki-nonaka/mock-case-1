@@ -18,14 +18,13 @@
 
 .item-img {
     width: 177px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
     margin: 0;
 }
 
 .item-img img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
 }
 
 .item-info {
