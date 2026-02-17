@@ -1,0 +1,99 @@
+.profile-content {
+    width: 680px;
+    margin: 59px auto;
+}
+
+.profile-title {
+    height: 47px;
+    margin: 0;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.profile-img__block {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 47px 0 76px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    margin-right: 40px;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.profile-img__upload {
+    display: inline-block;
+    background: #ffffff;
+    color: #FF5555;
+    border: 2px solid #FF5555;
+    width: 179px;
+    height: 49px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 49px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.profile-img__upload input {
+    display: none;
+}
+
+.profile-input__block {
+    width: 100%;
+}
+
+
+.profile-input__title {
+    height: 36px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-input {
+    width: 100%;
+    height: 55px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #5F5F5F;
+    padding: 0 16px;
+}
+
+.profile-form__error-message {
+    height: 62px;
+    margin: 0;
+    color: #ff0000;
+    font-size: 20px;
+}
+
+.profile-button {
+    width: 100%;
+    height: 60px;
+}
+
+.profile-button button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #FF5555;
+    cursor: pointer;
+}

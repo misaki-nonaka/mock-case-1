@@ -1,0 +1,294 @@
+.item-detail {
+    display: flex;
+    justify-content: center;
+    margin-top: 95px;
+}
+
+.item-image {
+    width: 690px;
+    padding-top: 36px;
+}
+
+.item-image__inner {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.item-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.sold-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.description-box {
+    width: 690px;
+}
+
+.description-block {
+    width: 570px;
+    margin: 0 auto;
+}
+
+.item-name {
+    margin: 0;
+    font-size: 45px;
+}
+
+.item-brand {
+    margin: 0;
+    font-size: 20px;
+}
+
+.item-price {
+    margin: 28px 0;
+    font-size: 30px;
+}
+
+.item-price span {
+    font-size: 45px;
+}
+
+.item-list__count {
+    display: flex;
+    justify-content: space-between;
+    width: 144px;
+    height: 67px;
+    margin-left: 45px;
+}
+
+.like-button {
+    width: 45px;
+    height: 40px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.like-button img {
+    width: 100%;
+    height: 100%;
+}
+
+.count__like p {
+    margin: 5px auto 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.count__comment {
+    width: 40px;
+}
+
+.count__comment img {
+    width: 100%;
+    height: 40px;
+}
+
+.count__comment p {
+    margin: 5px auto 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.purchase-btn {
+    width: 570px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.purchase-btn button {
+    width: 100%;
+    height: 56px;
+    margin: 22px 0;
+    border: none;
+    background: #FF5555;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.purchase-btn button:disabled{
+    background: #D9D9D9;
+    cursor: default;
+}
+
+.item-description__title {
+    height: 74px;
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+    align-content: center;
+}
+
+.item-description__text {
+    font-size: 24px;
+    align-content: center;
+}
+
+.item-info__title {
+    height: 100px;
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+    align-content: center;
+}
+
+.item-info__inner {
+    display: flex;
+    margin-bottom: 35px;
+}
+
+.item-info__inner h3 {
+    height: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 61px;
+}
+
+.info-category__box {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 22px;
+    row-gap: 15px;
+}
+
+.info-category {
+    height: 30px;
+    background: #D9D9D9;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 0 21px;
+}
+
+.item-info__inner p {
+    font-size: 20px;
+    height: 100%;
+    margin: 0;
+    margin-left: 54px;
+}
+
+.item-list__comment-title {
+    width: 100%;
+    height: 100px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #5F5F5F;
+    vertical-align: middle;
+    margin: 0;
+    line-height: 100px;
+}
+
+.comment-user {
+    display: flex;
+    margin-bottom: 19px;
+}
+
+.comment-user img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 18px;
+}
+
+.comment-user p {
+    height: 70px;
+    line-height: 70px;
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.item-list__comment {
+    width: 100%;
+    font-size: 20px;
+    font-weight: lighter;
+    background: #E5E5E5;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.comment-input {
+    margin: 0;
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.comment-input__form textarea {
+    width: 100%;
+    height: 246px;
+    border: 2px solid #5F5F5F;
+    border-radius: 5px;
+}
+
+.comment-form__error-message {
+    width: 100%;
+    height: 40px;
+    margin: 0px;
+    padding: 5px;
+    color: red;
+    font-size: 20px;
+}
+
+.comment-input__form button {
+    margin: 0;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 56px;
+    font-size: 25px;
+    font-weight: bold;
+    background: #FF5555;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+    .item-image {
+        width: 30%;
+    }
+
+    .item-image__inner {
+        width: 90%;
+    }
+
+    .description-box {
+        width: 60%;
+    }
+
+    .description-block {
+        width: 90%;
+    }
+
+    .purchase-btn {
+        width: 90%;
+    }
+
+    .item-info__inner p {
+        margin-left: 20px;
+    }
+}

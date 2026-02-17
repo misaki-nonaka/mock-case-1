@@ -1,0 +1,169 @@
+.content-box {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1350px;
+    margin: 90px auto;
+}
+
+.purchase-info {
+    width: 805px;
+    margin: 0;
+}
+
+.item-block {
+    display: flex;
+    padding-bottom: 43px;
+    border-bottom: 1px solid #000000;
+}
+
+.item-img {
+    width: 177px;
+    margin: 0;
+}
+
+.item-img img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.item-info {
+    margin: 0 55px;
+}
+
+.item-name {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.item-price {
+    margin: 0;
+    font-size: 32px;
+}
+
+.item-price span {
+    font-size: 27px;
+}
+
+.payment-block {
+    padding-bottom: 63px;
+    border-bottom: 1px solid #000000;
+}
+
+.payment-title {
+    height: 85px;
+    line-height: 85px;
+    margin: 0 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.payment__select {
+    width: 265px;
+    height: 31px;
+    margin-left: 96px;
+}
+
+.payment__select select {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #5F5F5F;
+    color: #5F5F5F;
+}
+
+.shipment-block {
+    padding-bottom: 59px;
+    border-bottom: 1px solid #000000;
+}
+
+.shipment-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shipment-title h3 {
+    height: 85px;
+    line-height: 85px;
+    margin: 0 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.shipment-title a {
+    text-decoration: none;
+    height: 85px;
+    line-height: 85px;
+    width: 115px;
+    font-size: 20px;
+    color: #0073CC;
+}
+
+.shipment-inner {
+    margin: 13px 96px;
+    font-size: 20px;
+    font-weight: bolder;
+
+}
+
+.shipment-inner p {
+    margin: 0;
+}
+
+.purchase-summary {
+    width: 440px;
+}
+
+.summary-table {
+    width: 100%;
+}
+
+.summary-table tr {
+    height: 115px;
+    border: 1px solid #000000;
+}
+
+.summary-table th {
+    width: 50%;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.summary-table td {
+    width: 50%;
+    font-size: 24px;
+    text-align: center;
+}
+
+.summary-table span {
+    font-size: 28px;
+}
+
+.summary-form {
+    margin-top: 66px;
+    width: 100%;
+    height: 60px;
+}
+
+.summary-form button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    background: #FF5555;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+    .purchase-info {
+        width: 60%;
+    }
+
+    .purchase-summary {
+        width: 35%;
+    }
+}

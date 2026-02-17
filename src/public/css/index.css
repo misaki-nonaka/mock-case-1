@@ -1,0 +1,80 @@
+.tab-list {
+    width: 100%;
+    height: 47px;
+    margin-top: 47px;
+    border-bottom: 2px solid #5F5F5F;
+}
+
+.tab-list__inner {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    padding-left: 129px;
+}
+
+.tab-list__item {
+    width: 155px;
+    height: 40px;
+    text-align: right;
+    margin-right: 52px;
+}
+
+.tab-list__link {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #5F5F5F;
+}
+
+.tab-list__link.active {
+    color: #FF0000;
+}
+
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 290px);
+    gap: 72px;
+    width: 1376px;
+    margin: 76px auto 0;
+}
+
+.item-list__inner {
+    width: 100%;
+    height: 320px;
+}
+
+.item-list__image {
+    position: relative;
+}
+
+.item-list__image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.sold-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.item-list__inner p {
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    font-size: 25px;
+}
+
+@media screen and (max-width: 1300px) {
+    .item-list {
+        width: 95%;
+    }
+}
