@@ -12,7 +12,7 @@
             @method('patch')
             <div class="profile-img__block">
                 <div class="profile-img">
-                    <img src="{{ asset(optional($profile)->profile_img ?? 'storage/profiles/noimage.jpg') }}" alt="">
+                    <img src="{{ asset(optional($profile)->profile_img ?? 'images/profiles/noimage.jpg') }}" alt="">
                 </div>
                 <div class="profile-img__input-block">
                     <label class="profile-img__upload">画像を選択する

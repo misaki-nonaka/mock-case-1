@@ -46,7 +46,7 @@
             </div>
             <div class="purchase-btn">
                 <form action="{{route('purchase', $item->id)}}" method="get">
-                    <button type="submit">購入手続きへ</button>
+                    <button type="submit" {{$item->sold==1 ? "disabled" : ""}}>購入手続きへ</button>
                 </form>
             </div>
             <div class="description-block">

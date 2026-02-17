@@ -7,7 +7,7 @@
 @section('content')
     <div class="profile-block">
         <div class="profile-img">
-            <img src="{{ asset(optional($contents)->profile->profile_img ?? 'storage/profiles/noimage.jpg') }}" alt="">
+            <img src="{{ asset(optional($contents)->profile->profile_img ?? 'images/profiles/noimage.jpg') }}" alt="">
         </div>
         <h1 class="profile-name">
             {{ $contents?->profile?->nickname }}

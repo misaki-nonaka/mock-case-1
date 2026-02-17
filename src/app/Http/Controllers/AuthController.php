@@ -9,8 +9,6 @@ use Illuminate\Validation\ValidationException;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\WelcomeEmail;
 use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller

@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddressRequest;
 use App\Models\Item;
 use App\Models\Profile;
-use App\Models\Purchase;
-use App\Models\Shipment;
 
 class PurchaseController extends Controller
 {
@@ -39,28 +37,4 @@ class PurchaseController extends Controller
         ]]);
         return redirect()->route('purchase', $item_id);
     }
-
-    // public function complete($item_id){
-    //     $user = auth()->user();
-    //     $address = session('address')
-    //     ?? $user->profile->only(['zipcode', 'address', 'building']);
-    //     $payment = session('payment', 'konbini');
-
-    //     Item::find($item_id)->update(['sold' => 1]);
-    //     Purchase::create([
-    //         'item_id' => $item_id,
-    //         'user_id' => $user->id,
-    //         'payment' => $payment
-    //     ]);
-    //     Shipment::create([
-    //         'item_id' => $item_id,
-    //         'item_zipcode' => $address['zipcode'],
-    //         'item_address' => $address['address'],
-    //         'item_building' => $address['building']
-    //     ]);
-
-    //     session()->forget(['address', 'payment']);
-
-    //     return redirect('/');
-    // }
 }
