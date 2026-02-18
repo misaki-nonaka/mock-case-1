@@ -21,7 +21,7 @@ class SellController extends Controller
         $originalName = $request->file('item_img')->getClientOriginalName();
         $extension = $request->file('item_img')->getClientOriginalExtension();
         $fileName = time().'_' .$originalName;
-        $target_path = 'items/';
+        $targetPath = 'items/';
 
         $file = $request->file('item_img');
         $image = Image::make($file)->resize(800, null, function($constraint) {
@@ -29,13 +29,13 @@ class SellController extends Controller
         })
         ->encode($extension, 75);
 
-        Storage::disk('public')->put($target_path.$fileName, $image);
+        Storage::disk('public')->put($targetPath.$fileName, $image);
 
-        $img_path = 'storage/items/';
+        $imgPath = 'storage/items/';
 
 
         Item::create([
-            'item_img' => $img_path.$fileName,
+            'item_img' => $imgPath.$fileName,
             'item_name' => $request->item_name,
             'brand' => $request->brand,
             'price' => $request->price,

@@ -30,7 +30,7 @@ class ProfileController extends Controller
         if($request->hasFile('profile_img')){
             $extension = $request->file('profile_img')->getClientOriginalExtension();
             $fileName = time().'_' .'id-'.(auth()->id()). '.' .$extension;
-            $target_path = 'profiles/';
+            $targetPath = 'profiles/';
 
             $file = $request->file('profile_img');
             $image = Image::make($file)->resize(800, null, function($constraint) {
@@ -38,12 +38,12 @@ class ProfileController extends Controller
             })
             ->encode($extension, 75);
 
-            Storage::disk('public')->put($target_path.$fileName, $image);
+            Storage::disk('public')->put($targetPath.$fileName, $image);
 
-            $img_path = 'storage/profiles/';
+            $imgPath = 'storage/profiles/';
             Profile::updateOrCreate(['user_id' => auth()->id()], [
                 'nickname' => $request->nickname,
-                'profile_img' => $img_path.$fileName,
+                'profile_img' => $imgPath.$fileName,
                 'zipcode' => $request->zipcode,
                 'address' => $request->address,
                 'building' => $request->building
