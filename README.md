@@ -38,19 +38,23 @@
     　動作確認にはStripe CLIの起動が必要です。  
   
     - 手順  
-    1 Stripe CLI コンテナを起動  
+    1. Stripe CLI コンテナを起動  
     　docker run --rm -it stripe/stripe-cli:latest login  
     　ブラウザを開きStripeにログイン  
-    2 環境変数の設定  
+    2. 環境変数の設定  
     　https://dashboard.stripe.com/test/apikeys にアクセスしAPIキーを取得する  
     　/src/.env のSTRIPE_KEYおよびSTRIPE_SECRETに変数を入力する  
-    3 開発環境にイベントを転送する  
-    　docker run --rm -it \ 
-      --network mock-case-1_flea-market_default \ 
-      -e STRIPE_API_KEY=sk_test_XXXXXXXXXXXXXXXX \ 
-      stripe/stripe-cli:latest \ 
-      listen --forward-to http://nginx:80/stripe/webhook  
-    4 /src/.envにWebhookの秘密鍵を登録する  
+    3. 開発環境にイベントを転送する  
+    　docker network ls でネットワーク名を確認してください  
+    ```
+    docker run --rm -it \
+  --network <確認したネットワーク名> \
+  -e STRIPE_API_KEY=sk_test_XXXXXXXXXXXXXXXXXXXXXXXXX \
+  stripe/stripe-cli:latest \
+  listen --forward-to http://nginx:80/stripe/webhook
+    ```
+    
+    4. /src/.envにWebhookの秘密鍵を登録する  
     　STRIPE_WEBHOOK_SECRET=XXXXXXXXXXXXXXXX  
   
     - 決済動作確認  
@@ -90,7 +94,13 @@
 ・Stripe CLI 1.35.0  
   
 ## テスト方法
-php artisan test  
+- テスト環境設定  
+・cp src/.env.testing.example src/.env.testing  
+・php artisan key:generate --env=testing  
+・php artisan config:clear  
+・php artisan migrate --env=testing  
+- テスト実行
+・php artisan test  
   
 ## ER図
 ![ER](ER.drawio.png)  

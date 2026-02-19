@@ -14,5 +14,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/docker/*
+docker/mysql/data
+!docker/mysql/init/
+!docker/mysql/init/*.sql
 src/vendorsrc/.env.testing
