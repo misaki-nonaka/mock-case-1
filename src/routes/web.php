@@ -34,7 +34,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/payment/{item_id}', [PurchaseController::class, 'payment']);
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress']);
     Route::patch('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress']);
-    // Route::post('/complete/{item_id}', [PurchaseController::class, 'complete']);
 
     Route::get('/sell', [SellController::class, 'sell']);
     Route::post('/sell', [SellController::class, 'exhibit']);

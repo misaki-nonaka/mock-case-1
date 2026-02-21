@@ -49,7 +49,9 @@ class ItemController extends Controller
         ->where('user_id', auth()->id())
         ->exists();
 
-        return view('detail', compact('item', 'isLiked'));
+        $mySellItem = $item->user_id == auth()->id() ? "true" : "false";
+
+        return view('detail', compact('item', 'isLiked', 'mySellItem'));
     }
 
     public function like($item_id){

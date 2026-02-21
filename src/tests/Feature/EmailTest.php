@@ -34,10 +34,17 @@ class EmailTest extends TestCase
         );
     }
 
-    // /** @test */
-    // public function メール認証サイトに遷移() {
-        
-    // }
+    /** @test */
+    public function メール認証サイトに遷移() {
+        $user = User::factory()->unverified()->create();
+
+        $response = $this->actingAs($user)
+            ->get('/email/verify');
+        $response->assertStatus(200);
+
+        $response->assertSee('http://localhost:8025');
+        // 外部リンクのため、viewにリンクがあるかのみ確認しています
+    }
 
     /** @test */
     public function 認証完了するとプロフィール設定画面に遷移() {

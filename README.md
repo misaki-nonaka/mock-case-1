@@ -20,17 +20,18 @@
   
 ## 環境構築
 - Dockerビルド  
-    ・git clone git@github.com:misaki-nonaka/mock-case-1.git  
-    ・cp src/.env.example .env  
-    ・docker-compose up -d --build  
+    ・`git clone git@github.com:misaki-nonaka/mock-case-1.git`  
+    ・`cp src/.env.example .env`  
+    ・`docker-compose up -d --build`  
 
 - Laravel環境構築  
-    ・cp src/.env.example src/.env　、適宜環境変数変更  
-    ・docker-compose exec php bash  
-    ・composer install  
-    ・php artisan key:generate  
-    ・php artisan migrate  
-    ・php artisan db:seed  
+    ・`cp src/.env.example src/.env`　、適宜環境変数変更  
+    ・`docker-compose exec php bash`  
+    ・`composer install`  
+    ・`php artisan key:generate`  
+    ・`php artisan migrate`  
+    ・`php artisan db:seed`  
+    ・`php artisan storage:link`  
 
 - Stripe決済環境構築  
     ＊Stripe Checkout + Webhookを使用しています。  
@@ -39,13 +40,13 @@
   
     - 手順  
     1. Stripe CLI コンテナを起動  
-    　docker run --rm -it stripe/stripe-cli:latest login  
+    　`docker run --rm -it stripe/stripe-cli:latest login`  
     　ブラウザを開きStripeにログイン  
     2. 環境変数の設定  
     　https://dashboard.stripe.com/test/apikeys にアクセスしAPIキーを取得する  
     　/src/.env のSTRIPE_KEYおよびSTRIPE_SECRETに変数を入力する  
     3. 開発環境にイベントを転送する  
-    　docker network ls でネットワーク名を確認してください  
+    　`docker network ls` でネットワーク名を確認してください  
     ```
     docker run --rm -it \
   --network <確認したネットワーク名> \
@@ -95,12 +96,13 @@
   
 ## テスト方法
 - テスト環境設定  
-・cp src/.env.testing.example src/.env.testing  
-・php artisan key:generate --env=testing  
-・php artisan config:clear  
-・php artisan migrate --env=testing  
-- テスト実行
-・php artisan test  
+・`cp src/.env.testing.example src/.env.testing`  
+・`docker-compose exec php bash`  
+・`php artisan key:generate --env=testing`  
+・`php artisan config:clear`  
+・`php artisan migrate --env=testing`  
+- テスト実行  
+・`php artisan test`  
   
 ## ER図
 ![ER](ER.drawio.png)  
@@ -111,6 +113,7 @@
 - ログインユーザーのみがいいねできる
 - 購入済み商品は一覧ページから詳細ページへのリンクを無効にする
 - 購入済み商品は詳細ページの「購入手続きへ」ボタンを無効にする
+- 自分が出品した商品は詳細ページの「購入手続きへ」ボタンを無効にする
 - コンビニ払いの場合はStripe決済を経由せず、即時決済完了とする。  
 　(コーチとの打ち合わせにより)
 - カード払いでStripe決済画面に移行した際、一度Purchaseテーブルに送付先住所を仮保存し、statusをpendingとする
